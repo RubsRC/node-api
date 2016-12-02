@@ -13,7 +13,7 @@ app.get('/api/contacts/getContacts', (request, response) => {
 	if (!contacts) {
 		response.status(404).json({ message: 'No contacts found.'});
 	}
-	
+
 	response.json(contacts);
 });
 
@@ -63,6 +63,20 @@ app.put('/api/contacts/updateContact/:id', (request, response) => {
 
 	response.json(contacts[index]);
 });
+
+app.delete('/api/contacts/deleteContact/:id', (request, response) => {
+	const requestId = request.params.id;
+
+	let contact = contacts.filter(contact => {
+		return contact.id == requestId;
+	})[0];
+
+	const index = contacts.indexOf(contact);
+
+	contacts.splice(index, 1);
+
+	response.json({ message: `User ${requestId} deleted.` });
+})
 
 const hostname = 'localhost';
 const port = 3001;
