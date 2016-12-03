@@ -15,13 +15,9 @@ app.use('/api/contacts', require('./api/contacts/routes/get_contact'));
 app.use('/api/contacts', require('./api/contacts/routes/post_contact'));
 app.use('/api/contacts', require('./api/contacts/routes/put_contact'));
 app.use('/api/contacts', require('./api/contacts/routes/delete_contact'));
-// getContacts
-//getContact/id
-//postCOntacts
-//putContact
-//deleteContact
 
-const hostname = 'localhost';
+// const hostname = 'localhost';
+const hostname = '162.209.96.163';
 const port = 3001;
 
 app.listen(port, hostname, () => {
