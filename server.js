@@ -30,8 +30,8 @@ app.use('/api/contacts', require('./api/contacts/routes/post_contact'));
 app.use('/api/contacts', require('./api/contacts/routes/put_contact'));
 app.use('/api/contacts', require('./api/contacts/routes/delete_contact'));
 
-const hostname = 'localhost';
-// const hostname = '162.209.96.163';
+// const hostname = 'localhost';
+const hostname = '162.209.96.163';
 const port = 3001;
 
 app.listen(port, hostname, () => {
