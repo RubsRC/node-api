@@ -1,20 +1,25 @@
+/*jshint esversion: 6 *//* jshint node: true */
 'use strict';
 
 const express = require('express');
+let connection = require('./../../../connection');
 //const Contact = require('../model/Contact');
 const router = express.Router();
 let contacts = require('./../../../data');
 
 router.route('/getContacts')
 	.get((req, res) => {
-		
-		// Metodo para seleccionar los contactos de BD y mostrarlos
-		
-		if (!contacts) {
-			res.status(404).json({ message: 'No contacts found.'});
-		}
-		
-		res.json(contacts);	
+		console.log(connection);
+		connection.query('SELECT * FROM cat_empresa;', (err, rows) => {
+			if (err) {
+				res.status(404).json({ message: 'No contacts found. '});
+				console.log('Error while performing query.');
+				console.error(err);
+				return;
+			}
+			res.json(rows);
+		});
+		connection.end();
 	});
 
  module.exports = router;

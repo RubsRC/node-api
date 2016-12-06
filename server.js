@@ -1,9 +1,11 @@
+/*jshint esversion: 6 *//* jshint node: true */
 'use strict';
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const pug = require('pug');
+let connection = require('./connection');
 let contacts = require('./data');
 
 const app =  express();
@@ -35,7 +37,5 @@ const hostname = 'localhost';
 const port = 3001;
 
 app.listen(port, hostname, () => {
-
-	// TODO: conexion a mysql
-	console.log(`Server is runnig at http://${hostname}:${port}`);
+		console.log(`Server is runnig at http://${hostname}:${port}`);
 });
