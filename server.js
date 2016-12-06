@@ -37,5 +37,14 @@ const hostname = 'localhost';
 const port = 3001;
 
 app.listen(port, hostname, () => {
-		console.log(`Server is runnig at http://${hostname}:${port}`);
+		pool.getConnection(function(err, connection) {
+			if (err) {
+				console.error('Problems connecting to MySQL.');
+				console.error(err);
+				return;
+			}
+			console.log(`Server is runnig at http://${hostname}:${port}`);
+			console.log(`Connected to MySQL as id ${connection.threadId}.`);
+			connection.release();
+		});
 });
