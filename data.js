@@ -22,7 +22,7 @@ const data = [
   },
   {
     "id": 4,
-    "first_name": "Ado",
+    "first_name": "Aldo",
     "last_name": "Kukic",
     "email": "ado@scotch.io",
     "website": "http://scotch.io"

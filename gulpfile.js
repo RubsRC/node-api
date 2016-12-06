@@ -1,14 +1,15 @@
-var gulp = require('gulp');
-var bs = require('browser-sync').create(); // create a browser sync instance.
+'use strict';
 
-gulp.task('browser-sync', function() {
-    bs.init({
-        server: {
-            baseDir: "./"
-        }
-    });
-});
+const gulp = require('gulp'),
+  wrench = require('wrench');
 
-gulp.task('watch', ['browser-sync'], function () {
-    gulp.watch("*.pug").on('change', bs.reload);
-});
+wrench
+	.readdirSyncRecursive('./gulp-tasks')
+  	.filter(function(file) {
+    		return (/\.(js)$/i).test(file);
+  	})
+	.map(function(file) {
+ 		require('./gulp-tasks/' + file);
+  	});
+
+gulp.task('default', ['serve']);
