@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const pug = require('pug');
-let connection = require('./connection');
+let pool = require('./connection');
 let contacts = require('./data');
 
 const app =  express();
@@ -32,9 +32,10 @@ app.use('/api/contacts', require('./api/contacts/routes/post_contact'));
 app.use('/api/contacts', require('./api/contacts/routes/put_contact'));
 app.use('/api/contacts', require('./api/contacts/routes/delete_contact'));
 
-const hostname = 'localhost';
-// const hostname = '162.209.96.163';
-const port = 3001;
+const env = process.env.NODE_ENV || 'development';
+const config = require('./config')[env];
+const hostname = config.server.host;
+const port = config.server.port;
 
 app.listen(port, hostname, () => {
 		pool.getConnection(function(err, connection) {
